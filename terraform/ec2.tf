@@ -12,6 +12,7 @@ resource "aws_instance" "access_all_areas" {
 
 	key_name = "access_key"
 	vpc_security_group_ids = [aws_security_group.allow-ssh.id]
+    subnet_id = aws_subnet.main.id
 	tags = {
 		Name = "access_all_areas"
 		}
