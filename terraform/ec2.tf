@@ -10,7 +10,7 @@ data "aws_ami" "AMI_al2023" {
 
 resource "aws_instance" "access_all_areas" {
 	ami = data.aws_ami.AMI_al2023.id
-	instance_type = "t2.micro"
+	instance_type = "t3.micro"
 
 	key_name = "access_key"
 	vpc_security_group_ids = [aws_security_group.allow-ssh.id]
