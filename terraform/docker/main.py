@@ -22,4 +22,3 @@ word_list = generate_word_list(text)
 convert_word_list_to_csv(word_list, local_output)
 
 s3.upload_file(local_output, bucket, output_key)
-
