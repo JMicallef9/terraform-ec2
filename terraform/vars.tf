@@ -11,7 +11,6 @@ variable "local_filepath" {
 variable "input_key" {
     description = "S3 key for uploaded input file"
     type = string
-    default = "input/file.txt"
 }
 
 variable "output_key" {
