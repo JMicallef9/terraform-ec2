@@ -18,6 +18,17 @@ resource "aws_instance" "project_ec2" {
 
 	iam_instance_profile = aws_iam_instance_profile.ec2_instance_profile.name
 
+	user_data = <<-EOF
+				#!/bin/bash
+              	docker run \\
+                -e BUCKET_NAME=${var.bucket_name} \\
+                -e INPUT_KEY=${var.input_key} \\
+                -e OUTPUT_KEY=${var.output_key} \\
+                jmicallef9/word-list-generator:latest
+              EOF
+
+	depends_on = [terraform_data.upload_input]
+
 	tags = {
 		Name = "project_ec2"
 		}
