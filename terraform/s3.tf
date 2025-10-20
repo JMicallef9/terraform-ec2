@@ -22,7 +22,7 @@ resource "terraform_data" "upload_input" {
 resource "terraform_data" "verify_output" {
   depends_on = [aws_instance.project_ec2]
 
-  provisioner "local_exec" {
+  provisioner "local-exec" {
     command = <<EOF
       aws s3 ls s3://${aws_s3_bucket.ec2_bucket.bucket}/${var.output_key} \\
         && echo "Success: Output file found in S3" \\
