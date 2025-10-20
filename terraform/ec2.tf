@@ -24,7 +24,7 @@ resource "aws_instance" "project_ec2" {
                 -e BUCKET_NAME=${var.bucket_name} \\
                 -e INPUT_KEY=${var.input_key} \\
                 -e OUTPUT_KEY=${var.output_key} \\
-                jmicallef9/word-list-generator:latest
+                jmicallef9/word-list-generator-ec2:latest
               EOF
 
 	depends_on = [terraform_data.upload_input]
