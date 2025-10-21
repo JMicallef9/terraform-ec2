@@ -10,9 +10,9 @@ resource "terraform_data" "upload_input" {
   provisioner "local-exec" {
     command = "python script/s3_upload.py"
     environment = {
-      BUCKET_NAME     = var.bucket_name
-      INPUT_KEY       = var.input_key
-      LOCAL_FILE_PATH = var.local_filepath
+      BUCKET_NAME = var.bucket_name
+      INPUT_KEY = var.input_key
+      LOCAL_FILE = var.local_filepath
     }
   }
 
