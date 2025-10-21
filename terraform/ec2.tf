@@ -20,6 +20,11 @@ resource "aws_instance" "project_ec2" {
 
 	user_data = <<-EOF
 				#!/bin/bash
+				yum update -y
+				amazon-linux-extras install docker -y || yum install docker -y
+				systemctl start docker
+				systemctl enable docker
+				usermod -aG docker ec2-user
               	docker run \\
                 -e BUCKET_NAME=${var.bucket_name} \\
                 -e INPUT_KEY=${var.input_key} \\
