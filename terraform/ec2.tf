@@ -28,7 +28,6 @@ resource "aws_instance" "project_ec2" {
               	docker run \\
                 -e BUCKET_NAME=${var.bucket_name} \\
                 -e INPUT_KEY=${var.input_key} \\
-                -e OUTPUT_KEY=${var.output_key} \\
                 jmicallef9/word-list-generator-ec2:latest
               EOF
 
