@@ -1,6 +1,7 @@
 import boto3
 import os
 from datetime import datetime
+from pathlib import Path
 from utils import (extract_text_from_file,
                    generate_word_list,
                    convert_word_list_to_csv)
@@ -10,7 +11,9 @@ s3 = boto3.client("s3")
 bucket = os.environ["BUCKET_NAME"]
 input_key = os.environ["INPUT_KEY"]
 
-local_input = "/tmp/input.txt"
+input_filename = Path(input_key).name
+
+local_input = f"/tmp/{input_filename}"
 local_output = "/tmp/output.csv"
 
 s3.download_file(bucket, input_key, local_input)
