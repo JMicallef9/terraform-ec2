@@ -12,9 +12,3 @@ variable "input_key" {
     description = "S3 key for uploaded input file"
     type = string
 }
-
-variable "output_key" {
-    description = "S3 key for processed CSV output"
-    type = string
-    default = "output/result.csv"
-}
