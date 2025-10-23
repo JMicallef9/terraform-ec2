@@ -20,7 +20,7 @@ resource "terraform_data" "upload_input" {
 }
 
 resource "terraform_data" "verify_output" {
-  depends_on = [aws_instance.project_ec2]
+  depends_on = [aws_instance.word_list_bucket]
 
   provisioner "local-exec" {
     command = <<EOF
