@@ -8,7 +8,7 @@ data "aws_ami" "AMI_al2023" {
 		}
 }
 
-resource "aws_instance" "project_ec2" {
+resource "aws_instance" "word_list_bucket" {
 	ami = data.aws_ami.AMI_al2023.id
 	instance_type = "t3.micro"
 
