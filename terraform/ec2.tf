@@ -20,13 +20,17 @@ resource "aws_instance" "word_list_bucket" {
 
 	user_data = <<-EOF
 				#!/bin/bash
-				yum update -y
-				amazon-linux-extras install docker -y || yum install docker -y
+				set -e
+				dnf update -y
+				dnf install -y docker
 				systemctl start docker
 				systemctl enable docker
 				usermod -aG docker ec2-user
 				sleep 10
-              	docker run -e BUCKET_NAME=${var.bucket_name} -e INPUT_KEY=${var.input_key} jmicallef9/word-list-generator-ec2:latest > /var/log/docker_run.log 2>&1
+				sudo -u ec2-user bash -c "
+				docker pull jmicallef9/word-list-generator-ec2:latest &&
+				docker run -e BUCKET_NAME=${var.bucket_name} -e INPUT_KEY=${var.input_key} jmicallef9/word-list-generator-ec2:latest
+				" > /var/log/docker_run.log 2>&1
               EOF
 
 	depends_on = [terraform_data.upload_input]
