@@ -25,10 +25,12 @@ resource "aws_instance" "word_list_bucket" {
 				systemctl start docker
 				systemctl enable docker
 				usermod -aG docker ec2-user
+				sleep 10
               	docker run \\
                 -e BUCKET_NAME=${var.bucket_name} \\
                 -e INPUT_KEY=${var.input_key} \\
-                jmicallef9/word-list-generator-ec2:latest
+                jmicallef9/word-list-generator-ec2:latest \\
+				> /var/log/docker_run.log 2>&1
               EOF
 
 	depends_on = [terraform_data.upload_input]
